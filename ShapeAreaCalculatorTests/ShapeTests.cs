@@ -40,7 +40,7 @@ public class ShapeTests
     }
 }
 
-public class SomeShape : Shape
+internal class SomeShape : Shape
 {
     public override double Area => 0;
 }
