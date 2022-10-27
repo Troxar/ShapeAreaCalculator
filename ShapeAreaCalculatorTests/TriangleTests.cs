@@ -31,29 +31,6 @@ public class TriangleTests
     }
     
     [Theory]
-    [InlineData(-2)]
-    [InlineData(16)]
-    public void Triangle_WhenPrecisionIsWrong_ShouldThrowException(int precision)
-    {
-        Triangle cut = new(1, 1, 1);
-        
-        cut.Invoking(x => x.Precision = precision)
-            .Should().Throw<ArgumentOutOfRangeException>();
-    }
-    
-    [Theory]
-    [InlineData(0)]
-    [InlineData(7)]
-    [InlineData(15)]
-    public void Triangle_WhenPrecisionIsCorrect_ShouldNotThrowException(int precision)
-    {
-        Triangle cut = new(1, 1, 1);
-        
-        cut.Invoking(x => x.Precision = precision)
-            .Should().NotThrow();
-    }
-    
-    [Theory]
     [InlineData(3, 4, 5)]
     [InlineData(4, 5, 3)]
     [InlineData(5, 3, 4)]

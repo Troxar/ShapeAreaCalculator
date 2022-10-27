@@ -15,20 +15,6 @@ public class Triangle : Shape
     
     public double SideC { get; }
 
-    private int _precision = 3;
-    public int Precision
-    {
-        get => _precision;
-        set
-        {
-            if (value is < 0 or > 15)
-            {
-                throw new ArgumentOutOfRangeException(nameof(value));
-            }
-            _precision = value;
-        }
-    }
-
     public override double Area
     {
         get
