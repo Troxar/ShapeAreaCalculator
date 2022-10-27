@@ -4,6 +4,10 @@ public class Circle : Shape
 {
     public Circle(double radius)
     {
+        if (radius <= 0)
+        {
+            throw new ArgumentException(nameof(radius));
+        }
         Radius = radius;
     }
     

@@ -9,7 +9,7 @@ public class CircleTests
     [InlineData(1, 3.142)]
     [InlineData(18, 1017.876)]
     [InlineData(6.2, 120.763)]
-    public void Triangle_WhenPrecisionIsDefault_ShouldReturnCorrectArea(double radius, double expected)
+    public void Circle_WhenPrecisionIsDefault_ShouldReturnCorrectArea(double radius, double expected)
     {
         Circle cut = new(radius);
 
@@ -22,11 +22,21 @@ public class CircleTests
     [InlineData(6.2, 2, 120.76)]
     [InlineData(6.2, 3, 120.763)]
     [InlineData(6.2, 4, 120.7628)]
-    public void Triangle_WhenPrecisionIsCustom_ShouldReturnCorrectArea(double radius, int precision, double expected)
+    public void Circle_WhenPrecisionIsCustom_ShouldReturnCorrectArea(double radius, int precision, double expected)
     {
         Circle cut = new(radius);
         cut.Precision = precision;
     
         cut.Area.Should().Be(expected);
+    }
+    
+    [Theory]
+    [InlineData(0)]
+    [InlineData(-1)]
+    [InlineData(-23.46)]
+    public void Circle_WhenRadiusIsLessThanOrEqualToZero_ShouldThrowException(double radius)
+    {
+        FluentActions.Invoking(() => new Circle(radius))
+            .Should().Throw<ArgumentException>();
     }
 }
