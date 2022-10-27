@@ -42,7 +42,7 @@ public class TriangleTests
     }
     
     [Theory]
-    [InlineData(1, 2, 3)]
+    [InlineData(1, 2, 2.9)]
     [InlineData(20, 15, 17)]
     public void Triangle_IsNotRightAngled(double sideA, double sideB, double sideC)
     {
@@ -63,5 +63,25 @@ public class TriangleTests
         cut.Precision = precision;
         
         cut.IsRightAngled().Should().Be(expected);
+    }
+    
+    [Theory]
+    [InlineData(-1, 1, 1)]
+    [InlineData(1, 0, 1)]
+    [InlineData(1, 0, -23.45)]
+    public void Triangle_WhenSideIsLessThanOrEqualToZero_ShouldThrowException(double sideA, double sideB, double sideC)
+    {
+        FluentActions.Invoking(() => new Triangle(sideA, sideB, sideC))
+            .Should().Throw<ArgumentException>();
+    }
+    
+    [Theory]
+    [InlineData(1, 2, 5)]
+    [InlineData(9, 91, 2)]
+    [InlineData(12.3, 4.5, 6.78)]
+    public void Triangle_WhenSidesAreWrong_ShouldThrowException(double sideA, double sideB, double sideC)
+    {
+        FluentActions.Invoking(() => new Triangle(sideA, sideB, sideC))
+            .Should().Throw<ArgumentException>();
     }
 }

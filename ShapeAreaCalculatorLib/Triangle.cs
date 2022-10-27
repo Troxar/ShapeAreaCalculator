@@ -4,11 +4,35 @@ public class Triangle : Shape
 {
     public Triangle(double sideA, double sideB, double sideC)
     {
+        CheckSide(sideA, nameof(sideA));
+        CheckSide(sideB, nameof(sideB));
+        CheckSide(sideC, nameof(sideC));
+        CheckSides(sideA, sideB, sideC);
+
         SideA = sideA;
         SideB = sideB;
         SideC = sideC;
     }
 
+    private void CheckSide(double side, string nameof)
+    {
+        if (side <= 0)
+        {
+            throw new ArgumentException(nameof);
+        }
+    }
+
+    private void CheckSides(double sideA, double sideB, double sideC)
+    {
+        double[] sides = { sideA, sideB, sideC };
+        Array.Sort(sides);
+
+        if (sides[2] >= sides[0] + sides[1])
+        {
+            throw new ArgumentException("Triangle with such sides cannot exist");
+        }
+    }
+    
     public double SideA { get; }
     
     public double SideB { get; }
